@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Página Web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ESTILOS -->
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin-bottom: 5px;
+    }
+
+    nav a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    section {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #e5e7eb;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Mi Página Web</h1>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="inicio">
+      <h2>Bienvenido</h2>
+      <p>
+        Esta página está creada únicamente con HTML, CSS y JavaScript
+        y se puede editar directamente desde GitHub.
+      </p>
+      <br>
+      <button onclick="mostrarMensaje()">Probar JavaScript</button>
+      <p id="mensaje"></p>
+    </section>
+
+    <section id="servicios">
+      <h2>Servicios</h2>
+      <ul>
+        <li>Desarrollo web</li>
+        <li>Automatización de procesos</li>
+        <li>Soporte técnico</li>
+      </ul>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <form onsubmit="enviarFormulario(event)">
+        <label>Nombre</label>
+        <input type="text" id="nombre" required>
+
+        <label>Mensaje</label>
+        <textarea id="mensajeTexto" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+      <p id="respuesta"></p>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="anio"></span> Mi Página Web
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.getElementById("anio").textContent = new Date().getFullYear();
+
+    function mostrarMensaje() {
+      document.getElementById("mensaje").textContent =
+        "✅ JavaScript funcionando correctamente.";
+    }
+
+    function enviarFormulario(event) {
+      event.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      document.getElementById("respuesta").textContent =
+        "Gracias " + nombre + ", tu mensaje fue recibido (demo).";
+    }
+  </script>
+
+</body>
+</html>
