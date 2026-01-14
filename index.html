@@ -360,6 +360,7 @@
       <a href="#paquetes">Paquetes</a>
       <a href="#como">Cómo funciona</a>
       <a href="#faq">FAQ</a>
+      <a href="#testimonios">Testimonios</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </div>
@@ -384,8 +385,8 @@
             <a class="btn secondary" href="#catalogo">🎮 Ver catálogo</a>
           </div>
 
+          <!-- Aquí van tus leones (los dejé igual, para no tocar tu diseño) -->
           <div class="lionStage" aria-label="Ilustraciones de leones animados">
-            <!-- LION 1 -->
             <div class="lionWrap">
               <svg viewBox="0 0 220 210" width="100%" height="auto" role="img" aria-label="León animado">
                 <g class="sparkle">
@@ -423,7 +424,6 @@
               </svg>
             </div>
 
-            <!-- LION 2 -->
             <div class="lionWrap">
               <svg viewBox="0 0 220 210" width="100%" height="auto" role="img" aria-label="León animado 2">
                 <g class="sparkle">
@@ -485,31 +485,32 @@
   <section id="catalogo">
     <div class="sectionTitle">
       <h3>Catálogo</h3>
-      <p>Tu lista de juegos (edita precios y detalles).</p>
+      <p>Elige los juegos y cotiza directo por WhatsApp.</p>
     </div>
-<div class="card" style="padding:16px; margin: 14px 0;">
-  <h4 style="margin:0 0 10px;">✅ Elige tus juegos</h4>
-  <p style="margin:0 0 12px; color:var(--muted); font-weight:800;">
-    Marca lo que quieres rentar y se agregará automáticamente al mensaje de WhatsApp.
-  </p>
 
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-    <label style="font-weight:900;"><input type="checkbox" class="juego" value="Dardos"> Dardos</label>
-    <label style="font-weight:900;"><input type="checkbox" class="juego" value="León traga pelotas"> León traga pelotas</label>
-    <label style="font-weight:900;"><input type="checkbox" class="juego" value="Pinta caritas"> Pinta caritas</label>
-    <label style="font-weight:900;"><input type="checkbox" class="juego" value="Inflables"> Inflables</label>
-    <label style="font-weight:900;"><input type="checkbox" class="juego" value="Juegos de canicas"> Juegos de canicas</label>
-    <label style="font-weight:900;"><input type="checkbox" class="juego" value="Máquina de burbujas"> Máquina de burbujas</label>
-    <label style="font-weight:900;"><input type="checkbox" class="juego" value="Aros"> Aros</label>
-    <label style="font-weight:900;"><input type="checkbox" class="juego" value="Lotería"> Lotería</label>
-  </div>
+    <div class="card" style="padding:16px; margin: 14px 0;">
+      <h4 style="margin:0 0 10px;">✅ Elige tus juegos</h4>
+      <p style="margin:0 0 12px; color:var(--muted); font-weight:800;">
+        Marca lo que quieres rentar y se agregará automáticamente al mensaje de WhatsApp.
+      </p>
 
-  <div style="margin-top:12px;">
-    <button class="btn primary" id="btnCotizarSeleccion">🎉 Cotizar selección</button>
-    <p id="selStatus" style="margin:10px 0 0; color:var(--muted); font-weight:900;"></p>
-  </div>
-</div>
-    
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <label style="font-weight:900;"><input type="checkbox" class="juego" value="Dardos"> Dardos</label>
+        <label style="font-weight:900;"><input type="checkbox" class="juego" value="León traga pelotas"> León traga pelotas</label>
+        <label style="font-weight:900;"><input type="checkbox" class="juego" value="Pinta caritas"> Pinta caritas</label>
+        <label style="font-weight:900;"><input type="checkbox" class="juego" value="Inflables"> Inflables</label>
+        <label style="font-weight:900;"><input type="checkbox" class="juego" value="Juegos de canicas"> Juegos de canicas</label>
+        <label style="font-weight:900;"><input type="checkbox" class="juego" value="Máquina de burbujas"> Máquina de burbujas</label>
+        <label style="font-weight:900;"><input type="checkbox" class="juego" value="Aros"> Aros</label>
+        <label style="font-weight:900;"><input type="checkbox" class="juego" value="Lotería"> Lotería</label>
+      </div>
+
+      <div style="margin-top:12px;">
+        <button class="btn primary" id="btnCotizarSeleccion" type="button">🎉 Cotizar selección</button>
+        <p id="selStatus" style="margin:10px 0 0; color:var(--muted); font-weight:900;"></p>
+      </div>
+    </div>
+
     <div class="grid3">
       <div class="card item">
         <span class="tag"><i style="background:var(--red)"></i> Clásico</span>
@@ -568,10 +569,10 @@
       </div>
 
       <div class="card item">
-        <span class="tag"><i style="background:var(--red)"></i> Combo</span>
+        <span class="tag"><i style="background:var(--red)"></i> Paquetes</span>
         <h4>Paquete Feria</h4>
-        <p>Combina varios juegos y ahorra. Ideal para eventos grandes.</p>
-        <div class="price"><strong>$400</strong><span>juego individual</span></div>
+        <p>Paquetes para ahorrar en tu evento.</p>
+        <div class="price"><strong>Desde $1,000</strong><span>según paquete</span></div>
       </div>
     </div>
   </section>
@@ -580,29 +581,29 @@
   <section id="paquetes">
     <div class="sectionTitle">
       <h3>Paquetes sugeridos</h3>
-      <p>Ejemplos (ajusta a tus precios reales).</p>
+      <p>Con tus precios.</p>
     </div>
 
     <div class="grid3">
       <div class="card item">
         <span class="tag"><i style="background:var(--green)"></i> Básico</span>
-        <h4>Mini Feria</h4>
-        <p>Dardos + Aros + Lotería</p>
-        <div class="price"><strong>$1200</strong><span>por evento</span></div>
+        <h4>Paquete 3 juegos</h4>
+        <p>3 juegos a elegir</p>
+        <div class="price"><strong>$1,200</strong><span>por evento</span></div>
       </div>
 
       <div class="card item">
-        <span class="tag"><i style="background:var(--yellow)"></i> Popular</span>
-        <h4>Feria Kids</h4>
-        <p>Inflable + León traga pelotas + Máquina de burbujas</p>
-        <div class="price"><strong>$1000</strong><span>4–6 horas</span></div>
+        <span class="tag"><i style="background:var(--cyan)"></i> Paquete</span>
+        <h4>2 juegos + burbujas</h4>
+        <p>Dos juegos a elegir + máquina de burbujas</p>
+        <div class="price"><strong>$1,000</strong><span>por evento</span></div>
       </div>
 
       <div class="card item">
-        <span class="tag"><i style="background:var(--purple)"></i> Completo</span>
-        <h4>Feria Total</h4>
-        <p>Inflable + Dardos + Aros + Canicas + Burbujas + Lotería</p>
-        <div class="price"><strong>$1800</strong><span>según horario</span></div>
+        <span class="tag"><i style="background:var(--purple)"></i> Individual</span>
+        <h4>Juego individual</h4>
+        <p>Elige 1 juego</p>
+        <div class="price"><strong>$400</strong><span>por evento</span></div>
       </div>
     </div>
   </section>
@@ -611,7 +612,7 @@
   <section id="como">
     <div class="sectionTitle">
       <h3>Cómo funciona</h3>
-      <p>En 4 pasos.</p>
+      <p>En 3 pasos.</p>
     </div>
 
     <div class="grid3">
@@ -641,13 +642,10 @@
     </div>
 
     <div style="display:grid; gap:12px;">
-     <details>
-  <summary>¿Qué incluye la renta?</summary>
-  <p>
-    Entrega, instalación básica y retiro, más pequeños premios
-    según la cantidad de niños.
-  </p>
-</details>
+      <details>
+        <summary>¿Qué incluye la renta?</summary>
+        <p>Entrega, instalación básica y retiro, más pequeños premios según la cantidad de niños.</p>
+      </details>
       <details>
         <summary>¿Necesito corriente?</summary>
         <p>Para inflables y máquina de burbujas sí. Para juegos como dardos, aros, canicas y lotería no.</p>
@@ -657,61 +655,64 @@
         <p>Se puede por 4, 6 u 8 horas o evento completo (según paquete).</p>
       </details>
     </div>
+
+    <div class="card" style="padding:16px; margin-top:14px;">
+      <h4 style="margin:0 0 10px;">📌 Políticas del servicio</h4>
+
+      <details>
+        <summary>Reservación / anticipo</summary>
+        <p>Para apartar fecha se confirma disponibilidad y puede solicitarse anticipo. La fecha queda reservada al confirmar.</p>
+      </details>
+
+      <details style="margin-top:10px;">
+        <summary>Cancelaciones y cambios</summary>
+        <p>Se puede reprogramar según disponibilidad. Si cancelas el mismo día, puede aplicar cargo por logística.</p>
+      </details>
+
+      <details style="margin-top:10px;">
+        <summary>Requisitos de espacio y corriente</summary>
+        <p>Inflables y máquina de burbujas requieren toma de corriente cercana y un espacio seguro. Los juegos de mesa no requieren corriente.</p>
+      </details>
+
+      <details style="margin-top:10px;">
+        <summary>Cuidado del equipo</summary>
+        <p>El equipo debe usarse de forma responsable. Si ocurre daño por mal uso, puede aplicarse costo de reparación.</p>
+      </details>
+    </div>
   </section>
-<div class="card" style="padding:16px; margin-top:14px;">
-  <h4 style="margin:0 0 10px;">📌 Políticas del servicio</h4>
 
-  <details>
-    <summary>Reservación / anticipo</summary>
-    <p>Para apartar fecha se confirma disponibilidad y puede solicitarse anticipo. La fecha queda reservada al confirmar.</p>
-  </details>
-
-  <details style="margin-top:10px;">
-    <summary>Cancelaciones y cambios</summary>
-    <p>Se puede reprogramar según disponibilidad. Si cancelas el mismo día, puede aplicar cargo por logística.</p>
-  </details>
-
-  <details style="margin-top:10px;">
-    <summary>Requisitos de espacio y corriente</summary>
-    <p>Inflables y máquina de burbujas requieren toma de corriente cercana y un espacio seguro. Los juegos de mesa no requieren corriente.</p>
-  </details>
-
-  <details style="margin-top:10px;">
-    <summary>Cuidado del equipo</summary>
-    <p>El equipo debe usarse de forma responsable. Si ocurre daño por mal uso, puede aplicarse costo de reparación.</p>
-  </details>
-</div>
-  </div>
-<section id="testimonios">
-  <div class="sectionTitle">
-    <h3>Testimonios</h3>
-    <p>Comentarios de clientes (puedes editar nombres).</p>
-  </div>
-
-  <div class="grid3">
-    <div class="card item">
-      <span class="tag"><i style="background:var(--yellow)"></i> 5/5</span>
-      <h4>“Llegaron puntual”</h4>
-      <p>“Todo muy limpio y armado rápido. Los niños se divirtieron muchísimo.” — Karla</p>
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="sectionTitle">
+      <h3>Testimonios</h3>
+      <p>Comentarios de clientes (puedes editar nombres).</p>
     </div>
-    <div class="card item">
-      <span class="tag"><i style="background:var(--green)"></i> 5/5</span>
-      <h4>“Muy buena atención”</h4>
-      <p>“Nos ayudaron a elegir el paquete ideal. Excelente servicio.” — Luis</p>
+
+    <div class="grid3">
+      <div class="card item">
+        <span class="tag"><i style="background:var(--yellow)"></i> 5/5</span>
+        <h4>“Llegaron puntual”</h4>
+        <p>“Todo muy limpio y armado rápido. Los niños se divirtieron muchísimo.” — Karla</p>
+      </div>
+      <div class="card item">
+        <span class="tag"><i style="background:var(--green)"></i> 5/5</span>
+        <h4>“Muy buena atención”</h4>
+        <p>“Nos ayudaron a elegir el paquete ideal. Excelente servicio.” — Luis</p>
+      </div>
+      <div class="card item">
+        <span class="tag"><i style="background:var(--cyan)"></i> 5/5</span>
+        <h4>“Ambiente de feria real”</h4>
+        <p>“El león traga pelotas fue el favorito. Recomendadísimos.” — Sofía</p>
+      </div>
     </div>
-    <div class="card item">
-      <span class="tag"><i style="background:var(--cyan)"></i> 5/5</span>
-      <h4>“Ambiente de feria real”</h4>
-      <p>“El león traga pelotas fue el favorito. Recomendadísimos.” — Sofía</p>
-    </div>
-    
+  </section>
+
   <!-- CONTACTO -->
   <section id="contacto">
     <div class="sectionTitle">
       <h3>Contacto</h3>
       <p>Cotiza en segundos.</p>
-  </div>
-</section>
+    </div>
 
     <div class="card contact">
       <div>
@@ -726,35 +727,34 @@
           <b>Cobertura:</b> (edita aquí tu zona)
         </div>
       </div>
-      
+
       <div>
         <div class="cotizador" style="margin-bottom:14px;">
-  <h4 style="margin:0 0 8px;">🎯 Cotizador rápido</h4>
+          <h4 style="margin:0 0 8px;">🎯 Cotizador rápido</h4>
 
-  <label style="font-weight:1000;">Tipo de renta</label>
-  <select id="tipoRenta" style="width:100%;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.92);font-weight:800;">
-    <option value="individual">Juego individual — $400</option>
-    <option value="paquete3">Paquete 3 juegos — $1,200</option>
-    <option value="dosMasBurbujas">2 juegos + burbujas — $1,000</option>
-  </select>
+          <label style="font-weight:1000;">Tipo de renta</label>
+          <select id="tipoRenta" style="width:100%;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.92);font-weight:800;">
+            <option value="individual">Juego individual — $400</option>
+            <option value="paquete3">Paquete 3 juegos — $1,200</option>
+            <option value="dosMasBurbujas">2 juegos + burbujas — $1,000</option>
+          </select>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
-    <div>
-      <label style="font-weight:1000;">Niños</label>
-      <input id="ninos" type="number" min="1" placeholder="Ej. 25"
-        style="width:100%;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.92);font-weight:800;">
-    </div>
-    <div>
-      <label style="font-weight:1000;">Total estimado</label>
-      <input id="total" type="text" readonly placeholder="$0"
-        style="width:100%;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.92);font-weight:1000;">
-    </div>
-  </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
+            <div>
+              <label style="font-weight:1000;">Niños</label>
+              <input id="ninos" type="number" min="1" placeholder="Ej. 25">
+            </div>
+            <div>
+              <label style="font-weight:1000;">Total estimado</label>
+              <input id="total" type="text" readonly placeholder="$0" style="font-weight:1000;">
+            </div>
+          </div>
 
-  <p style="margin:10px 0 0;color:var(--muted);font-weight:800;">
-    *El total depende del tipo de renta. Los premios se consideran según cantidad de niños.
-  </p>
-</div>
+          <p style="margin:10px 0 0;color:var(--muted);font-weight:800;">
+            *El total depende del tipo de renta. Los premios se consideran según cantidad de niños.
+          </p>
+        </div>
+
         <form id="form">
           <label style="font-weight:1000;">Nombre</label>
           <input name="nombre" required placeholder="Tu nombre" />
@@ -763,7 +763,7 @@
           <input name="fecha" placeholder="Ej. 20/02/2026" />
 
           <label style="font-weight:1000;">¿Qué quieres rentar?</label>
-          <textarea name="mensaje" required placeholder="Ej. Inflable + león traga pelotas + burbujas, 6 horas, en ___..."></textarea>
+          <textarea name="mensaje" required placeholder="Ej. 2 juegos + burbujas, 6 horas, en ___..."></textarea>
 
           <button class="btn" type="submit">🎉 Generar mensaje para WhatsApp</button>
           <p id="status" style="margin:10px 0 0; color:var(--muted); font-weight:900;"></p>
@@ -778,52 +778,25 @@
 </footer>
 
 <script>
-  // 🔧 Cambia tu WhatsApp aquí (con lada, sin +, sin espacios). Ej: 5217771234567
- const WHATSAPP_NUMBER = "525628333104";
+  // ✅ WhatsApp correcto (México: 52 + 10 dígitos)
+  const WHATSAPP_NUMBER = "525628333104";
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
   function waLink(text){
-    const base = "https://wa.me/" + WHATSAPP_NUMBER;
-    return base + "?text=" + encodeURIComponent(text);
+    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
   }
 
   function defaultText(){
-    return "Hola, vengo de La Feria 🎪. Quiero cotizar renta de juegos (dardos, león traga pelotas, pinta caritas, inflables, canicas, burbujas, aros y lotería). Fecha: ___ | Zona: ___ | Horario: ___ | Juegos: ___";
+    return "Hola, vengo de La Feria 🎪. Quiero cotizar renta de juegos. " +
+           "Tipo: ___ | Fecha: ___ | Zona: ___ | Horario: ___ | Juegos: ___";
   }
 
-  document.getElementById("btn-wa").href = waLink(defaultText());
-  document.getElementById("btn-wa-2").href = waLink(defaultText());
-
-  const form = document.getElementById("form");
-  const status = document.getElementById("status");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if(WHATSAPP_NUMBER === "525628333104"){
-      status.textContent = "⚠️ Primero edita el número de WhatsApp en el código (WHATSAPP_NUMBER).";
-      return;
-    }
-
-    const data = new FormData(form);
-    const nombre = (data.get("nombre") || "").toString().trim();
-    const fecha = (data.get("fecha") || "").toString().trim();
-    const mensaje = (data.get("mensaje") || "").toString().trim();
-
-    const text =
-      `Hola, soy ${nombre}. Vengo de La Feria 🎪 y quiero cotizar renta de juegos.\n` +
-      (fecha ? `Fecha del evento: ${fecha}\n` : "") +
-      `Detalle: ${mensaje}`;
-
-    const link = waLink(text);
-    status.innerHTML = `✅ Listo. <a href="${link}" target="_blank" rel="noopener">Abrir WhatsApp con el mensaje</a>`;
-  });
-  // ✅ Tu WhatsApp (ya corregido)
-  const WHATSAPP_NUMBER = "525628333104";
-
-  function waLink(text){
-    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
-  }
+  // Botones principales de WhatsApp
+  const btn1 = document.getElementById("btn-wa");
+  const btn2 = document.getElementById("btn-wa-2");
+  if(btn1) btn1.href = waLink(defaultText());
+  if(btn2) btn2.href = waLink(defaultText());
 
   // ====== 1) Cotizador ======
   const tipoRenta = document.getElementById("tipoRenta");
@@ -844,8 +817,8 @@
     total.value = "$" + base.toLocaleString("es-MX");
   }
 
-  if(tipoRenta){ tipoRenta.addEventListener("change", actualizarTotal); }
-  if(ninos){ ninos.addEventListener("input", actualizarTotal); }
+  if(tipoRenta) tipoRenta.addEventListener("change", actualizarTotal);
+  if(ninos) ninos.addEventListener("input", actualizarTotal);
   actualizarTotal();
 
   // ====== 3) Selección de juegos ======
@@ -860,13 +833,13 @@
     btnSel.addEventListener("click", () => {
       const juegos = juegosSeleccionados();
       if(juegos.length === 0){
-        selStatus.textContent = "⚠️ Marca al menos un juego para cotizar.";
+        if(selStatus) selStatus.textContent = "⚠️ Marca al menos un juego para cotizar.";
         return;
       }
 
       const base = precioBase();
       const n = (ninos && ninos.value) ? ninos.value : "No especificado";
-      const tipoTxt = tipoRenta ? tipoRenta.options[tipoRenta.selectedIndex].text : "No especificado";
+      const tipoTxt = (tipoRenta) ? tipoRenta.options[tipoRenta.selectedIndex].text : "No especificado";
 
       const msg =
         `Hola, vengo de La Feria 🎪 y quiero cotizar.\n` +
@@ -877,7 +850,30 @@
         `Incluye: Entrega, instalación básica y retiro, más pequeños premios según la cantidad de niños.`;
 
       const link = waLink(msg);
-      selStatus.innerHTML = `✅ Listo. <a href="${link}" target="_blank" rel="noopener">Abrir WhatsApp con la cotización</a>`;
+      if(selStatus) selStatus.innerHTML = `✅ Listo. <a href="${link}" target="_blank" rel="noopener">Abrir WhatsApp con la cotización</a>`;
+    });
+  }
+
+  // ====== Formulario a WhatsApp ======
+  const form = document.getElementById("form");
+  const status = document.getElementById("status");
+
+  if(form){
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      const nombre = (data.get("nombre") || "").toString().trim();
+      const fecha = (data.get("fecha") || "").toString().trim();
+      const mensaje = (data.get("mensaje") || "").toString().trim();
+
+      const msg =
+        `Hola, soy ${nombre}. Vengo de La Feria 🎪 y quiero cotizar.\n` +
+        (fecha ? `Fecha del evento: ${fecha}\n` : "") +
+        `Detalle: ${mensaje}`;
+
+      const link = waLink(msg);
+      if(status) status.innerHTML = `✅ Listo. <a href="${link}" target="_blank" rel="noopener">Abrir WhatsApp con el mensaje</a>`;
     });
   }
 </script>
