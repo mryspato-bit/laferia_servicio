@@ -270,13 +270,22 @@
     details summary{ cursor:pointer; font-weight: 1000; }
     details p{ margin:10px 0 0; color: var(--muted); font-weight: 750; }
 
+    /* ✅ OPCIÓN A: contacto a todo lo ancho */
     .contact{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 14px;
       padding: 16px;
     }
-    @media (max-width: 900px){ .contact{ grid-template-columns:1fr; } }
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items: start;
+    }
+    @media (max-width: 900px){
+      .contactGrid{ grid-template-columns:1fr; }
+    }
 
     input, textarea{
       width:100%;
@@ -385,7 +394,6 @@
             <a class="btn secondary" href="#catalogo">🎮 Ver catálogo</a>
           </div>
 
-          <!-- Aquí van tus leones (los dejé igual, para no tocar tu diseño) -->
           <div class="lionStage" aria-label="Ilustraciones de leones animados">
             <div class="lionWrap">
               <svg viewBox="0 0 220 210" width="100%" height="auto" role="img" aria-label="León animado">
@@ -586,7 +594,7 @@
 
     <div class="grid3">
       <div class="card item">
-        <span class="tag"><i style="background:var(--green)"></i> Básico</span>
+        <span class="tag"><i style="background:var(--green)"></i> Paquete 3</span>
         <h4>Paquete 3 juegos</h4>
         <p>3 juegos a elegir</p>
         <div class="price"><strong>$1,200</strong><span>por evento</span></div>
@@ -707,7 +715,7 @@
     </div>
   </section>
 
-  <!-- CONTACTO -->
+  <!-- ✅ CONTACTO: a todo lo ancho + 2 columnas abajo -->
   <section id="contacto">
     <div class="sectionTitle">
       <h3>Contacto</h3>
@@ -715,59 +723,75 @@
     </div>
 
     <div class="card contact">
-      <div>
-        <h4 style="margin:0 0 8px;">📲 Cotiza rápido</h4>
-        <p style="margin:0 0 12px; color:var(--muted); font-weight:800;">
-          Envíanos: fecha, zona, horario y qué juegos quieres.
+      <!-- Encabezado a lo ancho -->
+      <div class="card" style="padding:16px;">
+        <h4 style="margin:0 0 8px;">📲 Cotiza en segundos</h4>
+        <p style="margin:0; color:var(--muted); font-weight:800;">
+          Envíanos: fecha, zona, horario y qué juegos quieres. Te respondemos lo antes posible.
         </p>
-        <a class="btn primary" id="btn-wa-2" href="#">🎪 Abrir WhatsApp</a>
-
-        <div style="margin-top:12px; color:var(--muted); font-size:13px; font-weight:800;">
-          <b>Horario:</b> Lun–Dom • 9:00 a 20:00<br/>
-          <b>Cobertura:</b> (edita aquí tu zona)
-        </div>
       </div>
 
-      <div>
-        <div class="cotizador" style="margin-bottom:14px;">
-          <h4 style="margin:0 0 8px;">🎯 Cotizador rápido</h4>
-
-          <label style="font-weight:1000;">Tipo de renta</label>
-          <select id="tipoRenta" style="width:100%;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.92);font-weight:800;">
-            <option value="individual">Juego individual — $400</option>
-            <option value="paquete3">Paquete 3 juegos — $1,200</option>
-            <option value="dosMasBurbujas">2 juegos + burbujas — $1,000</option>
-          </select>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
-            <div>
-              <label style="font-weight:1000;">Niños</label>
-              <input id="ninos" type="number" min="1" placeholder="Ej. 25">
-            </div>
-            <div>
-              <label style="font-weight:1000;">Total estimado</label>
-              <input id="total" type="text" readonly placeholder="$0" style="font-weight:1000;">
-            </div>
-          </div>
-
-          <p style="margin:10px 0 0;color:var(--muted);font-weight:800;">
-            *El total depende del tipo de renta. Los premios se consideran según cantidad de niños.
+      <!-- 2 columnas abajo -->
+      <div class="contactGrid">
+        <!-- Izquierda -->
+        <div class="card" style="padding:16px;">
+          <h4 style="margin:0 0 8px;">Cotiza rápido</h4>
+          <p style="margin:0 0 12px; color:var(--muted); font-weight:800;">
+            WhatsApp directo (sin form): ideal si ya sabes lo que quieres.
           </p>
+
+          <a class="btn primary" id="btn-wa-2" href="#">🎪 Abrir WhatsApp</a>
+
+          <div style="margin-top:12px; color:var(--muted); font-size:13px; font-weight:800;">
+            <b>Horario:</b> Lun–Dom • 9:00 a 20:00<br/>
+            <b>Cobertura:</b> (edita aquí tu zona)
+          </div>
         </div>
 
-        <form id="form">
-          <label style="font-weight:1000;">Nombre</label>
-          <input name="nombre" required placeholder="Tu nombre" />
+        <!-- Derecha -->
+        <div class="card" style="padding:16px;">
+          <!-- Cotizador -->
+          <div class="cotizador" style="margin-bottom:14px;">
+            <h4 style="margin:0 0 8px;">🎯 Cotizador rápido</h4>
 
-          <label style="font-weight:1000;">Fecha del evento</label>
-          <input name="fecha" placeholder="Ej. 20/02/2026" />
+            <label style="font-weight:1000;">Tipo de renta</label>
+            <select id="tipoRenta" style="width:100%;padding:10px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.92);font-weight:800;">
+              <option value="individual">Juego individual — $400</option>
+              <option value="paquete3">Paquete 3 juegos — $1,200</option>
+              <option value="dosMasBurbujas">2 juegos + burbujas — $1,000</option>
+            </select>
 
-          <label style="font-weight:1000;">¿Qué quieres rentar?</label>
-          <textarea name="mensaje" required placeholder="Ej. 2 juegos + burbujas, 6 horas, en ___..."></textarea>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
+              <div>
+                <label style="font-weight:1000;">Niños</label>
+                <input id="ninos" type="number" min="1" placeholder="Ej. 25">
+              </div>
+              <div>
+                <label style="font-weight:1000;">Total estimado</label>
+                <input id="total" type="text" readonly placeholder="$0" style="font-weight:1000;">
+              </div>
+            </div>
 
-          <button class="btn" type="submit">🎉 Generar mensaje para WhatsApp</button>
-          <p id="status" style="margin:10px 0 0; color:var(--muted); font-weight:900;"></p>
-        </form>
+            <p style="margin:10px 0 0;color:var(--muted);font-weight:800;">
+              *El total depende del tipo de renta. Los premios se consideran según cantidad de niños.
+            </p>
+          </div>
+
+          <!-- Form -->
+          <form id="form">
+            <label style="font-weight:1000;">Nombre</label>
+            <input name="nombre" required placeholder="Tu nombre" />
+
+            <label style="font-weight:1000;">Fecha del evento</label>
+            <input name="fecha" placeholder="Ej. 20/02/2026" />
+
+            <label style="font-weight:1000;">¿Qué quieres rentar?</label>
+            <textarea name="mensaje" required placeholder="Ej. 2 juegos + burbujas, 6 horas, en ___..."></textarea>
+
+            <button class="btn" type="submit">🎉 Generar mensaje para WhatsApp</button>
+            <p id="status" style="margin:10px 0 0; color:var(--muted); font-weight:900;"></p>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -778,7 +802,7 @@
 </footer>
 
 <script>
-  // ✅ WhatsApp correcto (México: 52 + 10 dígitos)
+  // ✅ WhatsApp (México: 52 + 10 dígitos)
   const WHATSAPP_NUMBER = "525628333104";
 
   document.getElementById("year").textContent = new Date().getFullYear();
@@ -793,12 +817,12 @@
   }
 
   // Botones principales de WhatsApp
-  const btn1 = document.getElementById("btn-wa");
-  const btn2 = document.getElementById("btn-wa-2");
-  if(btn1) btn1.href = waLink(defaultText());
-  if(btn2) btn2.href = waLink(defaultText());
+  const btnHero = document.getElementById("btn-wa");
+  const btnContacto = document.getElementById("btn-wa-2");
+  if(btnHero) btnHero.href = waLink(defaultText());
+  if(btnContacto) btnContacto.href = waLink(defaultText());
 
-  // ====== 1) Cotizador ======
+  // ====== Cotizador ======
   const tipoRenta = document.getElementById("tipoRenta");
   const ninos = document.getElementById("ninos");
   const total = document.getElementById("total");
@@ -821,7 +845,7 @@
   if(ninos) ninos.addEventListener("input", actualizarTotal);
   actualizarTotal();
 
-  // ====== 3) Selección de juegos ======
+  // ====== Selección de juegos (Catálogo) ======
   const btnSel = document.getElementById("btnCotizarSeleccion");
   const selStatus = document.getElementById("selStatus");
 
@@ -879,3 +903,4 @@
 </script>
 </body>
 </html>
+
