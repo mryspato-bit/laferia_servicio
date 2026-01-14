@@ -1,360 +1,724 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ambikon | Modelo Dual CBTis 166</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La Feria | Renta de Juegos</title>
 
   <style>
     :root{
-      --bg1:#fff7fb;
-      --bg2:#f3fbff;
-      --card:#ffffffcc;
-      --line:#e9e6f2;
-      --text:#223046;
-      --muted:#5b6a7a;
+      /* Circo: colores alegres */
+      --red:#ff2d55;
+      --yellow:#ffd60a;
+      --blue:#2f7bff;
+      --cyan:#00d4ff;
+      --green:#17c964;
+      --purple:#7c3aed;
+      --orange:#ff7a00;
 
-      --p1:#ffd7e8;
-      --p2:#d8f3ff;
-      --p3:#dcf8e6;
-      --accent:#8aa6ff;
-      --accent2:#7bd6c7;
+      --ink:#1b1b1f;
+      --muted:#4b4b57;
+
+      --card:#ffffffcc;
+      --line: rgba(0,0,0,.10);
+      --shadow: 0 18px 60px rgba(0,0,0,.14);
+      --radius: 22px;
     }
 
     *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
+      color:var(--ink);
       background:
-        radial-gradient(1200px 600px at 20% 0%, var(--p2), transparent 60%),
-        radial-gradient(1000px 500px at 80% 10%, var(--p1), transparent 55%),
-        radial-gradient(900px 500px at 30% 90%, var(--p3), transparent 55%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
+        radial-gradient(1200px 600px at 20% 0%, rgba(0,212,255,.25), transparent 60%),
+        radial-gradient(1000px 500px at 80% 10%, rgba(255,45,85,.22), transparent 55%),
+        radial-gradient(900px 500px at 30% 90%, rgba(23,201,100,.20), transparent 55%),
+        linear-gradient(180deg, #fff 0%, #fff6f2 35%, #fff 100%);
       line-height:1.6;
     }
 
     a{ color:inherit; text-decoration:none; }
     .container{ width:min(1120px, 92%); margin:0 auto; }
 
+    /* Header */
     header{
       position:sticky; top:0; z-index:10;
-      backdrop-filter: blur(10px);
-      background: rgba(255,255,255,.65);
-      border-bottom:1px solid var(--line);
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.78);
+      border-bottom: 1px solid var(--line);
     }
 
     .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:14px 0;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      padding: 12px 0;
     }
 
     .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
+      display:flex; align-items:center; gap:12px;
+      min-width: 260px;
     }
 
-    .logo{
-      width:44px; height:44px;
-      border-radius:14px;
-      background: linear-gradient(135deg, var(--p1), var(--p2));
+    .mark{
+      width:46px; height:46px;
+      border-radius:16px;
+      display:grid; place-items:center;
       border:1px solid var(--line);
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-    }
-
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      padding:6px;
-      background: rgba(255,255,255,.7);
+      box-shadow: var(--shadow);
+      background:
+        conic-gradient(from 180deg,
+          var(--red), var(--yellow), var(--green), var(--cyan),
+          var(--blue), var(--purple), var(--orange), var(--red));
+      color:#fff;
+      font-weight: 1000;
+      letter-spacing: .5px;
+      text-shadow: 0 2px 0 rgba(0,0,0,.18);
+      transform: rotate(-6deg);
     }
 
     .brand h1{ margin:0; font-size:16px; }
-    .brand small{ color:var(--muted); font-size:12px; }
-
-    nav{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    nav a{
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.6);
-      color:var(--muted);
-      font-weight:600;
-      font-size:13px;
-    }
-
-    nav a:hover{
-      color:var(--text);
-      border-color: rgba(138,166,255,.55);
-      box-shadow: 0 0 0 4px rgba(138,166,255,.16);
-    }
-
-    .hero{
-      padding:28px 0 18px;
-    }
-
-    .wrap{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.75);
-      border-radius:22px;
-      padding:22px;
-      display:grid;
-      grid-template-columns: 1.3fr .9fr;
-      gap:18px;
-    }
-
-    @media(max-width:900px){
-      .wrap{ grid-template-columns:1fr; }
-    }
-
-    .badge{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: linear-gradient(135deg, rgba(255,215,232,.7), rgba(216,243,255,.7));
+    .brand small{
+      display:block; margin-top:2px;
       color:var(--muted);
       font-size:12px;
       font-weight:700;
+    }
+
+    nav{ display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    nav a{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.75);
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 13px;
+    }
+    nav a:hover{
+      color: var(--ink);
+      border-color: rgba(47,123,255,.45);
+      box-shadow: 0 0 0 4px rgba(47,123,255,.14);
+    }
+
+    /* Hero */
+    .hero{ padding: 18px 0 14px; }
+    .heroCard{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* “Toldo” circo */
+    .awning{
+      height: 16px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--red) 0 24px,
+        #fff 24px 48px
+      );
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+
+    .heroInner{
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      align-items: center;
+    }
+    @media (max-width: 920px){ .heroInner{ grid-template-columns:1fr; } }
+
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.75);
+      font-size: 12px;
+      font-weight: 1000;
       width:max-content;
     }
-
-    .dot{
-      width:8px; height:8px;
-      border-radius:50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    .badge .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      box-shadow: 0 0 0 4px rgba(255,214,10,.20);
     }
 
-    .hero h2{
-      margin:12px 0 8px;
-      font-size:32px;
-      letter-spacing:-.02em;
+    .title{
+      margin: 10px 0 8px;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-weight: 800;
+      max-width: 70ch;
     }
 
-    .hero p{
-      margin:0;
-      color:var(--muted);
-      max-width:70ch;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-
-    @media(max-width:520px){
-      .cards{ grid-template-columns:1fr; }
-    }
-
-    .mini{
-      border:1px solid var(--line);
-      border-radius:18px;
+    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px; }
+    .btn{
+      border: 1px solid var(--line);
       background: rgba(255,255,255,.85);
-      padding:14px;
+      padding: 11px 14px;
+      border-radius: 16px;
+      font-weight: 1000;
+      cursor:pointer;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      transition: transform .08s ease;
+    }
+    .btn:active{ transform: translateY(1px) scale(.99); }
+
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(255,45,85,.25), rgba(47,123,255,.20));
+      border-color: rgba(255,45,85,.35);
+    }
+    .btn.primary:hover{
+      box-shadow: 0 0 0 4px rgba(255,45,85,.12);
+    }
+    .btn.secondary:hover{
+      box-shadow: 0 0 0 4px rgba(0,212,255,.14);
+      border-color: rgba(0,212,255,.45);
     }
 
-    .mini strong{
-      display:block;
-      font-size:14px;
-      margin-bottom:6px;
+    /* Side panel */
+    .sidePanel{
+      border:1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.82);
+      padding: 14px;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
     }
-
-    .mini span{
-      color:var(--muted);
-      font-size:13px;
+    .mini{
+      border:1px dashed rgba(0,0,0,.18);
+      border-radius: 18px;
+      background: rgba(255,255,255,.85);
+      padding: 12px;
     }
+    .mini strong{ display:block; margin-bottom:4px; }
+    .mini span{ color: var(--muted); font-weight: 750; font-size: 13px; }
 
-    .layout{
+    /* Sections */
+    section{ scroll-margin-top: 90px; }
+    .sectionTitle{
+      margin: 22px 0 12px;
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
+    }
+    .sectionTitle h3{ margin:0; font-size: 22px; }
+    .sectionTitle p{ margin:0; color: var(--muted); font-weight: 800; }
+
+    .grid3{
       display:grid;
-      grid-template-columns: 1.6fr .9fr;
-      gap:18px;
-      padding: 18px 0 48px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
     }
-
-    @media(max-width:900px){
-      .layout{ grid-template-columns:1fr; }
-    }
+    @media (max-width: 900px){ .grid3{ grid-template-columns:1fr; } }
 
     .card{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.85);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .item{ padding: 16px; }
+    .tag{
+      display:inline-flex; gap:8px; align-items:center;
+      font-size: 12px;
+      font-weight: 1000;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.85);
+      width:max-content;
+    }
+    .tag i{
+      width:10px; height:10px; border-radius: 50%;
+      display:inline-block;
+    }
+    .item h4{ margin:10px 0 8px; font-size: 18px; }
+    .item p{ margin:0; color: var(--muted); font-weight: 750; }
+
+    .price{
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(0,0,0,.18);
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .price strong{ font-size: 18px; }
+
+    details{
       border:1px solid var(--line);
-      background: rgba(255,255,255,.8);
-      border-radius:22px;
-      overflow:hidden;
+      border-radius: 18px;
+      background: rgba(255,255,255,.82);
+      padding: 12px 14px;
     }
+    details summary{ cursor:pointer; font-weight: 1000; }
+    details p{ margin:10px 0 0; color: var(--muted); font-weight: 750; }
 
-    .post{
-      padding:18px;
-      border-bottom:1px solid var(--line);
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 16px;
     }
+    @media (max-width: 900px){ .contact{ grid-template-columns:1fr; } }
 
-    .post:last-child{ border-bottom:none; }
-
-    .post h3{ margin:6px 0; font-size:20px; }
-    .meta{ font-size:13px; color:var(--muted); }
-
-    .excerpt{
-      margin:8px 0;
-      color:var(--text);
+    input, textarea{
+      width:100%;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      color: var(--ink);
+      outline:none;
+      font-weight: 750;
     }
-
-    .btn{
-      padding:10px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: linear-gradient(135deg, rgba(138,166,255,.35), rgba(123,214,199,.25));
-      font-weight:700;
-      cursor:pointer;
+    input:focus, textarea:focus{
+      border-color: rgba(47,123,255,.45);
+      box-shadow: 0 0 0 4px rgba(47,123,255,.14);
     }
-
-    aside .box{
-      padding:16px;
-      border:1px solid var(--line);
-      border-radius:18px;
-      background: rgba(255,255,255,.9);
-      margin-bottom:14px;
-    }
-
-    aside h4{ margin:0 0 6px; }
-    aside p{ margin:0; font-size:13px; color:var(--muted); }
+    textarea{ min-height: 120px; resize: vertical; }
 
     footer{
-      border-top:1px solid var(--line);
-      background: rgba(255,255,255,.6);
-      padding:18px 0;
-      font-size:13px;
-      color:var(--muted);
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,.75);
+      color: var(--muted);
+      padding: 18px 0;
+      font-size: 13px;
       text-align:center;
+      font-weight: 800;
+    }
+
+    /* Lions */
+    .lionStage{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap: 12px;
+      flex-wrap:wrap;
+      padding: 8px 0 0;
+    }
+    .lionWrap{
+      width: 230px;
+      max-width: 100%;
+      filter: drop-shadow(0 14px 22px rgba(0,0,0,.12));
+      animation: bob 1.6s ease-in-out infinite;
+    }
+    .lionWrap:nth-child(2){ animation-delay: .25s; }
+    @keyframes bob{
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-6px); }
+    }
+    .tail{ transform-origin: 178px 156px; animation: tail 1.2s ease-in-out infinite; }
+    @keyframes tail{
+      0%,100%{ transform: rotate(10deg); }
+      50%{ transform: rotate(-12deg); }
+    }
+    .blink{ transform-origin: 112px 122px; animation: blink 4.2s infinite; }
+    @keyframes blink{
+      0%, 92%, 100%{ transform: scaleY(1); }
+      94%{ transform: scaleY(.08); }
+      96%{ transform: scaleY(1); }
+    }
+    .sparkle{ animation: sparkle 1.8s ease-in-out infinite; transform-origin: center; }
+    @keyframes sparkle{
+      0%,100%{ transform: scale(1); opacity: .9; }
+      50%{ transform: scale(1.18); opacity: 1; }
     }
   </style>
 </head>
 
 <body>
-
 <header>
   <div class="container topbar">
     <div class="brand">
-      <div class="logo">
-        <img src="ambikon-logo.png" alt="Ambikon">
-      </div>
+      <div class="mark">🎪</div>
       <div>
-        <h1>Ambikon</h1>
-        <small>Blog • Modelo Dual CBTis 166</small>
+        <h1>La Feria</h1>
+        <small>Renta de juegos: dardos • león traga pelotas • pinta caritas • inflables • canicas • burbujas • aros • lotería</small>
       </div>
     </div>
 
     <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#posts">Entradas</a>
-      <a href="#acerca">Acerca</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#paquetes">Paquetes</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="#faq">FAQ</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </div>
 </header>
 
 <main class="container">
+  <section class="hero" id="inicio">
+    <div class="heroCard">
+      <div class="awning"></div>
 
-<section id="inicio" class="hero">
-  <div class="wrap">
-    <div>
-      <div class="badge"><span class="dot"></span> Educación Dual • Empresa • Empleabilidad</div>
-      <h2>Modelo Dual CBTis 166</h2>
-      <p>
-        El Sistema Dual del CBTis 166 integra aula y empresa para formar competencias técnicas y laborales,
-        elevando la empleabilidad y la pertinencia regional mediante aprendizaje práctico real.
-        Este espacio busca orientar y motivar a los estudiantes a integrarse a este modelo formativo.
-      </p>
+      <div class="heroInner">
+        <div>
+          <div class="badge"><span class="dot"></span> ¡Juegos de feria para tu fiesta!</div>
+          <h2 class="title">La Feria</h2>
+          <p class="subtitle">
+            Llevamos un ambiente de circo a tu evento: juegos clásicos, inflables, pinta caritas y diversión para niños y adultos.
+            Entrega puntual, instalación rápida y todo listo para jugar.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn primary" id="btn-wa" href="#">🎉 Cotizar por WhatsApp</a>
+            <a class="btn secondary" href="#catalogo">🎮 Ver catálogo</a>
+          </div>
+
+          <div class="lionStage" aria-label="Ilustraciones de leones animados">
+            <!-- LION 1 -->
+            <div class="lionWrap">
+              <svg viewBox="0 0 220 210" width="100%" height="auto" role="img" aria-label="León animado">
+                <g class="sparkle">
+                  <circle cx="22" cy="32" r="4" fill="var(--cyan)"/>
+                  <circle cx="196" cy="26" r="4" fill="var(--red)"/>
+                  <circle cx="184" cy="64" r="3.5" fill="var(--yellow)"/>
+                </g>
+                <circle cx="110" cy="100" r="70" fill="var(--orange)" opacity=".95"/>
+                <circle cx="70" cy="72" r="16" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="152" cy="70" r="14" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="54" cy="112" r="14" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="168" cy="118" r="14" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="110" cy="42" r="12" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="110" cy="108" r="44" fill="#ffd8a8"/>
+                <circle cx="78" cy="78" r="12" fill="#ffbf77"/>
+                <circle cx="142" cy="78" r="12" fill="#ffbf77"/>
+                <circle cx="78" cy="78" r="6" fill="#ff9b9b" opacity=".8"/>
+                <circle cx="142" cy="78" r="6" fill="#ff9b9b" opacity=".8"/>
+                <g class="blink">
+                  <circle cx="96" cy="108" r="6" fill="#1b1b1f"/>
+                  <circle cx="124" cy="108" r="6" fill="#1b1b1f"/>
+                  <circle cx="94" cy="106" r="2" fill="#fff"/>
+                  <circle cx="122" cy="106" r="2" fill="#fff"/>
+                </g>
+                <path d="M110 120c-6 0-10 4-10 8 0 7 20 7 20 0 0-4-4-8-10-8z" fill="#ff6b6b"/>
+                <path d="M100 134c6 8 14 8 20 0" fill="none" stroke="#1b1b1f" stroke-width="4" stroke-linecap="round"/>
+                <path d="M62 156c0-24 20-38 48-38s48 14 48 38v18c0 14-10 24-24 24H86c-14 0-24-10-24-24z"
+                      fill="#ffe9cc" stroke="rgba(0,0,0,.08)" stroke-width="2"/>
+                <rect x="78" y="182" width="24" height="18" rx="8" fill="#ffd8a8"/>
+                <rect x="118" y="182" width="24" height="18" rx="8" fill="#ffd8a8"/>
+                <g class="tail">
+                  <path d="M156 160c18 6 24 20 20 34" fill="none" stroke="#ffbf77" stroke-width="10" stroke-linecap="round"/>
+                  <circle cx="176" cy="196" r="10" fill="var(--orange)"/>
+                </g>
+              </svg>
+            </div>
+
+            <!-- LION 2 -->
+            <div class="lionWrap">
+              <svg viewBox="0 0 220 210" width="100%" height="auto" role="img" aria-label="León animado 2">
+                <g class="sparkle">
+                  <circle cx="32" cy="28" r="4" fill="var(--purple)"/>
+                  <circle cx="188" cy="30" r="4" fill="var(--green)"/>
+                  <circle cx="196" cy="66" r="3.5" fill="var(--yellow)"/>
+                </g>
+                <circle cx="110" cy="100" r="70" fill="var(--red)" opacity=".9"/>
+                <circle cx="70" cy="72" r="16" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="152" cy="70" r="14" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="54" cy="112" r="14" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="168" cy="118" r="14" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="110" cy="42" r="12" fill="var(--yellow)" opacity=".95"/>
+                <circle cx="110" cy="108" r="44" fill="#ffd8a8"/>
+                <circle cx="78" cy="78" r="12" fill="#ffbf77"/>
+                <circle cx="142" cy="78" r="12" fill="#ffbf77"/>
+                <circle cx="78" cy="78" r="6" fill="#ff9b9b" opacity=".8"/>
+                <circle cx="142" cy="78" r="6" fill="#ff9b9b" opacity=".8"/>
+                <g class="blink">
+                  <circle cx="96" cy="108" r="6" fill="#1b1b1f"/>
+                  <circle cx="124" cy="108" r="6" fill="#1b1b1f"/>
+                  <circle cx="94" cy="106" r="2" fill="#fff"/>
+                  <circle cx="122" cy="106" r="2" fill="#fff"/>
+                </g>
+                <path d="M110 120c-6 0-10 4-10 8 0 7 20 7 20 0 0-4-4-8-10-8z" fill="#ff6b6b"/>
+                <path d="M100 134c6 8 14 8 20 0" fill="none" stroke="#1b1b1f" stroke-width="4" stroke-linecap="round"/>
+                <path d="M62 156c0-24 20-38 48-38s48 14 48 38v18c0 14-10 24-24 24H86c-14 0-24-10-24-24z"
+                      fill="#ffe9cc" stroke="rgba(0,0,0,.08)" stroke-width="2"/>
+                <rect x="78" y="182" width="24" height="18" rx="8" fill="#ffd8a8"/>
+                <rect x="118" y="182" width="24" height="18" rx="8" fill="#ffd8a8"/>
+                <g class="tail">
+                  <path d="M156 160c18 6 24 20 20 34" fill="none" stroke="#ffbf77" stroke-width="10" stroke-linecap="round"/>
+                  <circle cx="176" cy="196" r="10" fill="var(--red)"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidePanel">
+          <div class="mini">
+            <strong>✅ Incluye</strong>
+            <span>Entrega + instalación + retiro (según zona).</span>
+          </div>
+          <div class="mini">
+            <strong>🧼 Limpieza</strong>
+            <span>Equipo limpio y listo para jugar.</span>
+          </div>
+          <div class="mini">
+            <strong>🎯 Ideal para</strong>
+            <span>Cumpleaños • Escuelas • Kermeses • Eventos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOGO -->
+  <section id="catalogo">
+    <div class="sectionTitle">
+      <h3>Catálogo</h3>
+      <p>Tu lista de juegos (edita precios y detalles).</p>
     </div>
 
-    <div class="cards">
-      <div class="mini">
-        <strong>Objetivo</strong>
-        <span>
-          Atraer y orientar a estudiantes para integrarse al Sistema Dual,
-          conectando su formación académica con experiencia real en el sector productivo.
-        </span>
+    <div class="grid3">
+      <div class="card item">
+        <span class="tag"><i style="background:var(--red)"></i> Clásico</span>
+        <h4>Dardos</h4>
+        <p>Juego de puntería tipo feria. Ideal para retos y premios.</p>
+        <div class="price"><strong>$___</strong><span>por evento</span></div>
       </div>
 
-      <div class="mini">
-        <strong>Enfoque</strong>
-        <span>
-          Formación práctica, desarrollo de competencias técnicas y laborales,
-          y vinculación directa con empresas para fortalecer el perfil profesional del alumno.
-        </span>
+      <div class="card item">
+        <span class="tag"><i style="background:var(--orange)"></i> Estrella</span>
+        <h4>León traga pelotas</h4>
+        <p>Juego divertido para niños: encesta pelotas en la boca del león.</p>
+        <div class="price"><strong>$___</strong><span>por evento</span></div>
       </div>
 
-      <div class="mini">
-        <strong>Beneficios</strong>
-        <span>
-          Experiencia laboral real, habilidades demandadas por la región
-          y mejor preparación para prácticas, empleo o continuidad de estudios.
-        </span>
+      <div class="card item">
+        <span class="tag"><i style="background:var(--purple)"></i> Show</span>
+        <h4>Pinta caritas</h4>
+        <p>Servicio para niños: diseños rápidos y llamativos.</p>
+        <div class="price"><strong>$___</strong><span>por hora</span></div>
+      </div>
+
+      <div class="card item">
+        <span class="tag"><i style="background:var(--yellow)"></i> Infantil</span>
+        <h4>Inflables</h4>
+        <p>Inflables para saltar y jugar. Perfecto para fiestas infantiles.</p>
+        <div class="price"><strong>$___</strong><span>4–6 horas</span></div>
+      </div>
+
+      <div class="card item">
+        <span class="tag"><i style="background:var(--green)"></i> Tradicional</span>
+        <h4>Juegos de canicas</h4>
+        <p>Dinámica tipo feria con tiro de canicas (reto y puntería).</p>
+        <div class="price"><strong>$___</strong><span>por evento</span></div>
+      </div>
+
+      <div class="card item">
+        <span class="tag"><i style="background:var(--cyan)"></i> Visual</span>
+        <h4>Máquina de burbujas</h4>
+        <p>Ambientación divertida: burbujas constantes para fotos y risas.</p>
+        <div class="price"><strong>$___</strong><span>por evento</span></div>
+      </div>
+
+      <div class="card item">
+        <span class="tag"><i style="background:var(--blue)"></i> Reto</span>
+        <h4>Aros</h4>
+        <p>Encesta aros al objetivo. Ideal para niños y adultos.</p>
+        <div class="price"><strong>$___</strong><span>por evento</span></div>
+      </div>
+
+      <div class="card item">
+        <span class="tag"><i style="background:var(--yellow)"></i> Familiar</span>
+        <h4>Lotería</h4>
+        <p>Clásico para convivir: perfecto para familias y reuniones.</p>
+        <div class="price"><strong>$___</strong><span>por evento</span></div>
+      </div>
+
+      <div class="card item">
+        <span class="tag"><i style="background:var(--red)"></i> Combo</span>
+        <h4>Paquete Feria</h4>
+        <p>Combina varios juegos y ahorra. Ideal para eventos grandes.</p>
+        <div class="price"><strong>$___</strong><span>según armado</span></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="layout">
-
-  <div id="posts" class="card">
-    <article class="post">
-      <div class="meta">Guía • Sistema Dual</div>
-      <h3>¿Qué es el Modelo Dual y cómo participar?</h3>
-      <p class="excerpt">
-        Conoce cómo funciona el Modelo Dual, qué se espera del alumno y
-        cómo puedes integrarte desde el CBTis 166.
-      </p>
-      <button class="btn">Leer más</button>
-    </article>
-
-    <article class="post">
-      <div class="meta">Checklist • Seguimiento</div>
-      <h3>Requisitos y compromisos del estudiante</h3>
-      <p class="excerpt">
-        Aspectos clave que debes considerar antes de incorporarte al Sistema Dual:
-        responsabilidades, tiempos y evidencias.
-      </p>
-<button class="btn" onclick="openPost('post1')">Leer más</button>
-    </article>
-  </div>
-
-  <aside>
-    <div id="acerca" class="box">
-      <h4>Acerca</h4>
-      <p>
-        Blog informativo del proyecto de Modelo Dual desde el CBTis 166,
-        desarrollado con apoyo de Ambikon para la orientación y seguimiento del alumnado.
-      </p>
+  <!-- PAQUETES -->
+  <section id="paquetes">
+    <div class="sectionTitle">
+      <h3>Paquetes sugeridos</h3>
+      <p>Ejemplos (ajusta a tus precios reales).</p>
     </div>
 
-    <div id="contacto" class="box">
-      <h4>Contacto</h4>
-      <p>📧 contacto@ambikon.com</p>
+    <div class="grid3">
+      <div class="card item">
+        <span class="tag"><i style="background:var(--green)"></i> Básico</span>
+        <h4>Mini Feria</h4>
+        <p>Dardos + Aros + Lotería</p>
+        <div class="price"><strong>$___</strong><span>por evento</span></div>
+      </div>
+
+      <div class="card item">
+        <span class="tag"><i style="background:var(--yellow)"></i> Popular</span>
+        <h4>Feria Kids</h4>
+        <p>Inflable + León traga pelotas + Máquina de burbujas</p>
+        <div class="price"><strong>$___</strong><span>4–6 horas</span></div>
+      </div>
+
+      <div class="card item">
+        <span class="tag"><i style="background:var(--purple)"></i> Completo</span>
+        <h4>Feria Total</h4>
+        <p>Inflable + Dardos + Aros + Canicas + Burbujas + Lotería</p>
+        <div class="price"><strong>$___</strong><span>según horario</span></div>
+      </div>
     </div>
-  </aside>
+  </section>
 
-</section>
+  <!-- COMO FUNCIONA -->
+  <section id="como">
+    <div class="sectionTitle">
+      <h3>Cómo funciona</h3>
+      <p>En 4 pasos.</p>
+    </div>
 
+    <div class="grid3">
+      <div class="card item">
+        <span class="tag"><i style="background:var(--cyan)"></i> Paso 1</span>
+        <h4>Cotiza</h4>
+        <p>Fecha, colonia/municipio, horario y juegos.</p>
+      </div>
+      <div class="card item">
+        <span class="tag"><i style="background:var(--orange)"></i> Paso 2</span>
+        <h4>Aparta</h4>
+        <p>Confirmamos disponibilidad y se agenda.</p>
+      </div>
+      <div class="card item">
+        <span class="tag"><i style="background:var(--blue)"></i> Paso 3</span>
+        <h4>Instalamos</h4>
+        <p>Llegamos, instalamos y listo: ¡a jugar!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="sectionTitle">
+      <h3>Preguntas frecuentes</h3>
+      <p>Dudas rápidas.</p>
+    </div>
+
+    <div style="display:grid; gap:12px;">
+      <details>
+        <summary>¿Qué incluye la renta?</summary>
+        <p>Entrega, instalación básica y retiro (según zona). Si quieres operador/animador, se cotiza aparte.</p>
+      </details>
+      <details>
+        <summary>¿Necesito corriente?</summary>
+        <p>Para inflables y máquina de burbujas sí. Para juegos como dardos, aros, canicas y lotería no.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto dura el servicio?</summary>
+        <p>Se puede por 4, 6 u 8 horas o evento completo (según paquete).</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="sectionTitle">
+      <h3>Contacto</h3>
+      <p>Cotiza en segundos.</p>
+    </div>
+
+    <div class="card contact">
+      <div>
+        <h4 style="margin:0 0 8px;">📲 Cotiza rápido</h4>
+        <p style="margin:0 0 12px; color:var(--muted); font-weight:800;">
+          Envíanos: fecha, zona, horario y qué juegos quieres.
+        </p>
+        <a class="btn primary" id="btn-wa-2" href="#">🎪 Abrir WhatsApp</a>
+
+        <div style="margin-top:12px; color:var(--muted); font-size:13px; font-weight:800;">
+          <b>Horario:</b> Lun–Dom • 9:00 a 20:00<br/>
+          <b>Cobertura:</b> (edita aquí tu zona)
+        </div>
+      </div>
+
+      <div>
+        <form id="form">
+          <label style="font-weight:1000;">Nombre</label>
+          <input name="nombre" required placeholder="Tu nombre" />
+
+          <label style="font-weight:1000;">Fecha del evento</label>
+          <input name="fecha" placeholder="Ej. 20/02/2026" />
+
+          <label style="font-weight:1000;">¿Qué quieres rentar?</label>
+          <textarea name="mensaje" required placeholder="Ej. Inflable + león traga pelotas + burbujas, 6 horas, en ___..."></textarea>
+
+          <button class="btn" type="submit">🎉 Generar mensaje para WhatsApp</button>
+          <p id="status" style="margin:10px 0 0; color:var(--muted); font-weight:900;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
-  © 2026 Ambikon • Modelo Dual CBTis 166 • Sitio informativo
+  © <span id="year"></span> La Feria • Renta de juegos
 </footer>
 
+<script>
+  // 🔧 Cambia tu WhatsApp aquí (con lada, sin +, sin espacios). Ej: 5217771234567
+  const WHATSAPP_NUMBER = "TU_NUMERO_AQUI";
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  function waLink(text){
+    const base = "https://wa.me/" + WHATSAPP_NUMBER;
+    return base + "?text=" + encodeURIComponent(text);
+  }
+
+  function defaultText(){
+    return "Hola, vengo de La Feria 🎪. Quiero cotizar renta de juegos (dardos, león traga pelotas, pinta caritas, inflables, canicas, burbujas, aros y lotería). Fecha: ___ | Zona: ___ | Horario: ___ | Juegos: ___";
+  }
+
+  document.getElementById("btn-wa").href = waLink(defaultText());
+  document.getElementById("btn-wa-2").href = waLink(defaultText());
+
+  const form = document.getElementById("form");
+  const status = document.getElementById("status");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if(WHATSAPP_NUMBER === "TU_NUMERO_AQUI"){
+      status.textContent = "⚠️ Primero edita el número de WhatsApp en el código (WHATSAPP_NUMBER).";
+      return;
+    }
+
+    const data = new FormData(form);
+    const nombre = (data.get("nombre") || "").toString().trim();
+    const fecha = (data.get("fecha") || "").toString().trim();
+    const mensaje = (data.get("mensaje") || "").toString().trim();
+
+    const text =
+      `Hola, soy ${nombre}. Vengo de La Feria 🎪 y quiero cotizar renta de juegos.\n` +
+      (fecha ? `Fecha del evento: ${fecha}\n` : "") +
+      `Detalle: ${mensaje}`;
+
+    const link = waLink(text);
+    status.innerHTML = `✅ Listo. <a href="${link}" target="_blank" rel="noopener">Abrir WhatsApp con el mensaje</a>`;
+  });
+</script>
 </body>
 </html>
-
