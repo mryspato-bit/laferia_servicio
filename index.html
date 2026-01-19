@@ -835,6 +835,24 @@ section::before{
     text-align: center;
   }
 }
+    /* =========================
+   HEADER FIJO SOLO EN MÓVIL
+   ========================= */
+@media (max-width: 820px){
+
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Evita que el contenido quede debajo del header */
+  body{
+    padding-top: 76px;
+  }
+}
   </style>
 </head>
 
