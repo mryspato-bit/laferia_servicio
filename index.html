@@ -972,6 +972,22 @@ header .brand > div > small{
     width: 98% !important;
   }
 }
+    /* ===== HEADER MÁS CENTRADO (MÓVIL) ===== */
+@media (max-width: 820px){
+
+  /* El header sigue fijo, pero sin empujar visualmente */
+  header{
+    display: flex;
+    justify-content: center;
+  }
+
+  /* El contenido real del header se limita y centra */
+  header .topbar{
+    width: 96%;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
   </style>
 </head>
 
