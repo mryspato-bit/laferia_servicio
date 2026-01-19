@@ -503,20 +503,17 @@
     padding-top: 8px !important;
   }
 }
-    /* Evita que el header tape las secciones al usar #anclas */
-html { scroll-behavior: smooth; }
-
-#catalogo, #paquetes, #como, #faq, #testimonios, #contacto {
-  scroll-margin-top: 110px; /* ajusta si tu header es más alto */
+/* Ajuste global para TODOS los links con # */
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
 }
 
-/* En celular, el header suele ser más alto, damos más margen */
 @media (max-width: 600px){
-  #catalogo, #paquetes, #como, #faq, #testimonios, #contacto {
-    scroll-margin-top: 140px;
+  html{
+    scroll-padding-top: 150px;
   }
 }
-
   </style>
 </head>
 
