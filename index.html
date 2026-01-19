@@ -933,6 +933,40 @@ header .brand > div > small{
     margin-right: auto;
   }
 }
+    /* ===== CENTRAR MEJOR EN CELULAR (FORZADO) ===== */
+@media (max-width: 820px){
+
+  /* 1) Menos borde lateral en móvil (más centrado visualmente) */
+  .container{ width: 96% !important; }
+
+  /* 2) La tarjeta del hero bien centrada */
+  .heroCard{
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* 3) Texto y elementos centrados */
+  .heroInner{
+    text-align: center !important;
+  }
+
+  /* 4) Botones centrados */
+  .ctaRow{
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* 5) Leones centrados */
+  .lionStage{
+    justify-content: center !important;
+  }
+
+  /* 6) Evita que algún bloque interno empuje a la izquierda */
+  .heroInner > div{
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
   </style>
 </head>
 
