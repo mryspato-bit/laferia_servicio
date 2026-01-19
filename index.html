@@ -643,7 +643,7 @@ section::before{
   background: rgba(255,255,255,.90) !important;
 }
 /* =========================================================
-   FRANJAS CARPA – CONFIGURACIÓN FINAL Y LIMPIA
+   FRANJAS CARPA – BLOQUE DEFINITIVO CORRECTO
    ========================================================= */
 
 :root{
@@ -651,18 +651,46 @@ section::before{
 }
 
 /* =========================================================
-   BASE: APAGAR FRANJAS INTERNAS POR DEFECTO
+   FRANJA PARA CUADROS NORMALES (CATÁLOGO, PAQUETES, ETC.)
    ========================================================= */
-.card::before, .card::after,
-.mini::before, .mini::after,
-details::before, details::after,
-pre::before, pre::after{
-  display: none !important;
+.card,
+.mini{
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before,
+.mini::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--carpa-rojo) 0 16px,
+    #ffffff 16px 32px
+  );
+  opacity:.45;
+  pointer-events:none;
+}
+
+.card::after,
+.mini::after{
+  content:"";
+  position:absolute;
+  top:8px;
+  left:0;
+  width:100%;
+  height:1px;
+  background: rgba(0,0,0,.05);
+  pointer-events:none;
 }
 
 /* =========================================================
-   1) POLÍTICAS DEL SERVICIO
-   → SOLO UNA FRANJA EN EL CONTENEDOR GENERAL
+   POLÍTICAS DEL SERVICIO
+   → SOLO UNA FRANJA EN EL CONTENEDOR
    ========================================================= */
 #faq{
   position: relative;
@@ -699,7 +727,6 @@ pre::before, pre::after{
   z-index:2;
 }
 
-/* Asegura que el contenido quede visible */
 #faq > *{
   position: relative;
   z-index:3;
@@ -712,7 +739,7 @@ pre::before, pre::after{
 }
 
 /* =========================================================
-   2) CONTACTO
+   CONTACTO
    → UNA SOLA FRANJA PARA TODA LA SECCIÓN
    ========================================================= */
 #contacto{
@@ -750,19 +777,20 @@ pre::before, pre::after{
   z-index:2;
 }
 
-/* Contenido por encima */
 #contacto > *{
   position: relative;
   z-index:3;
 }
 
-/* ❌ Quitar franjas internas de contacto */
+/* ❌ Quitar franjas internas SOLO en contacto */
 #contacto .card::before,
 #contacto .card::after,
 #contacto .mini::before,
 #contacto .mini::after,
 #contacto details::before,
-#contacto details::after{
+#contacto details::after,
+#contacto pre::before,
+#contacto pre::after{
   display:none !important;
 }
   </style>
