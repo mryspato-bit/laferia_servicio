@@ -644,7 +644,7 @@ section::before{
 }
 /* ===== FRANJA CARPA LIMPIA Y FINA (GLOBAL) ===== */
 
-/* Color EXACTO del toldo del inicio */
+/* Rojo EXACTO del toldo del inicio */
 :root{
   --carpa-rojo: #ff4d6d;
 }
@@ -666,17 +666,17 @@ details::before{
   top: 0;
   left: 0;
   width: 100%;
-  height: 8px; /* 👈 más fina */
+  height: 8px;
   background: repeating-linear-gradient(
     90deg,
     var(--carpa-rojo) 0 16px,
     #ffffff 16px 32px
   );
-  opacity: .45;           /* 👈 menos saturado */
+  opacity: .45;
   pointer-events:none;
 }
 
-/* Línea sutil debajo (separación elegante) */
+/* Línea sutil debajo de la franja */
 .card::after,
 .mini::after,
 details::after{
@@ -689,14 +689,25 @@ details::after{
   background: rgba(0,0,0,.05);
   pointer-events:none;
 }
-/* ===== CONTACTO: SOLO UNA FRANJA ===== */
-#contacto .heroCard::before{
-  height: 8px;
-  opacity: .45;
+
+/* ===== AJUSTES FINOS POR SECCIÓN ===== */
+
+/* 1) FAQ – "Políticas del servicio": SOLO 1 franja */
+#faq details details::before,
+#faq details details::after{
+  display: none !important;
 }
 
-#contacto .heroCard::after{
-  display: none; /* ❌ quita segunda línea */
+/* 2) CONTACTO – "Cotiza en segundos": SIN franja */
+#contacto .heroCard::before,
+#contacto .heroCard::after,
+#contacto .card::before,
+#contacto .card::after,
+#contacto .mini::before,
+#contacto .mini::after,
+#contacto details::before,
+#contacto details::after{
+  display: none !important;
 }
   </style>
 </head>
