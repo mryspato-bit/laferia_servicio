@@ -849,6 +849,81 @@ details::after{
   position: relative;
   z-index: 3;
 }
+    /* =========================================================
+   FORZAR FRANJAS (porque otras reglas las están apagando)
+   ========================================================= */
+:root{ --carpa-rojo: #ed0524; }
+
+/* -------- 1) FRANJA EN CADA PREGUNTA FRECUENTE -------- */
+#faq details{
+  position: relative;
+  overflow: hidden;
+}
+
+#faq details::before{
+  display: block !important;
+  content: "" !important;
+  position: absolute;
+  top: 0; left: 0; width: 100%;
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--carpa-rojo) 0 14px,
+    #ffffff 14px 28px
+  );
+  opacity: .55;
+  pointer-events: none;
+}
+
+#faq details::after{
+  display: block !important;
+  content: "" !important;
+  position: absolute;
+  top: 6px; left: 0; width: 100%;
+  height: 1px;
+  background: rgba(0,0,0,.05);
+  pointer-events: none;
+}
+
+/* -------- 2) FRANJA EN TODA LA SECCIÓN CONTACTO -------- */
+#contacto{
+  position: relative;
+  overflow: hidden;
+  padding-top: 12px; /* evita que la franja tape el contenido */
+}
+
+#contacto::before{
+  display: block !important;
+  content: "" !important;
+  position: absolute;
+  top: 0; left: 0; width: 100%;
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--carpa-rojo) 0 16px,
+    #ffffff 16px 32px
+  );
+  opacity: .60;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#contacto::after{
+  display: block !important;
+  content: "" !important;
+  position: absolute;
+  top: 10px; left: 0; width: 100%;
+  height: 1px;
+  background: rgba(0,0,0,.06);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Asegura que el contenido quede por encima */
+#contacto > *{
+  position: relative;
+  z-index: 3;
+}
   </style>
 </head>
 
