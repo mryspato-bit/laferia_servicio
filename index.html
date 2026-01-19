@@ -1032,6 +1032,38 @@ header .brand > div > small{
     justify-content: center !important;
   }
 }
+    /* ===== CENTRADO REAL DEL HERO EN CELULAR ===== */
+@media (max-width: 820px){
+
+  /* Fuerza que el hero se centre como tarjeta */
+  .heroCard{
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+  }
+
+  /* El grid interno del hero: una sola columna centrada */
+  .heroGrid{
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    text-align: center !important;
+  }
+
+  /* Texto del hero */
+  .heroText{
+    text-align: center !important;
+  }
+
+  /* Botones */
+  .ctaRow{
+    justify-content: center !important;
+  }
+
+  /* Leones */
+  .lionStage{
+    justify-content: center !important;
+  }
+}
   </style>
 </head>
 
