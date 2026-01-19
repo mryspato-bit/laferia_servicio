@@ -643,98 +643,136 @@ section::before{
   background: rgba(255,255,255,.90) !important;
 }
 /* =========================================================
-   FRANJA CARPA – BLOQUE FINAL (QUE SÍ SE VE)
+   FRANJAS TIPO CARPA – VERSIÓN FINAL FUNCIONAL
    ========================================================= */
 
-/* Color EXACTO del toldo del inicio */
 :root{
-  --carpa-rojo: #ed0524;
+  --carpa-rojo: #ed0524; /* ROJO DEFINITIVO */
 }
 
-/* 1) APAGAR franjas en tarjetas internas (para que no se sature) */
-.card::before, .card::after,
-.mini::before, .mini::after,
-details::before, details::after{
-  display:none !important;
-}
-
-/* 2) FAQ: UNA franja en TODA la sección */
-#faq{
+/* ---------------------------------------------------------
+   BASE: los elementos que SÍ pueden tener franja
+   (NO se aplica a todo, solo a cards visibles)
+   --------------------------------------------------------- */
+.card,
+.mini,
+details{
   position: relative;
-  overflow: hidden;          /* recorta la franja */
-  padding-top: 12px;         /* evita que tape el contenido */
+  overflow: hidden;
 }
 
-#faq::before{
+/* ---------------------------------------------------------
+   FRANJA SUPERIOR (la que SÍ funcionaba)
+   --------------------------------------------------------- */
+.card::before,
+.mini::before,
+details::before{
   content:"";
   position:absolute;
   top: 0;
   left: 0;
-  right: 0;
-  height: 8px;
+  width: 100%;
+  height: 7px; /* fina */
   background: repeating-linear-gradient(
     90deg,
     var(--carpa-rojo) 0 16px,
     #ffffff 16px 32px
   );
-  opacity: .45;
-  z-index: 2;                /* por encima del fondo */
+  opacity: .40; /* limpio, no saturado */
   pointer-events:none;
 }
 
-#faq::after{
+/* Línea separadora muy sutil */
+.card::after,
+.mini::after,
+details::after{
   content:"";
   position:absolute;
-  top: 8px;
+  top: 7px;
   left: 0;
-  right: 0;
+  width: 100%;
   height: 1px;
   background: rgba(0,0,0,.05);
-  z-index: 2;
   pointer-events:none;
 }
 
-/* 3) CONTACTO: UNA franja en TODA la sección */
+/* =========================================================
+   AJUSTES POR SECCIÓN (tus reglas)
+   ========================================================= */
+
+/* ❌ QUITAR franjas internas en Políticas del servicio */
+#faq details::before,
+#faq details::after{
+  display:none !important;
+}
+
+/* ❌ QUITAR franjas en subapartados específicos */
+#faq .reservacion::before,
+#faq .reservacion::after,
+#faq .cancelaciones::before,
+#faq .cancelaciones::after,
+#faq .requisitos::before,
+#faq .requisitos::after,
+#faq .cuidado::before,
+#faq .cuidado::after{
+  display:none !important;
+}
+
+/* =========================================================
+   CONTACTO
+   → UNA franja que abarque TODA la sección
+   ========================================================= */
+
 #contacto{
   position: relative;
   overflow: hidden;
-  padding-top: 14px;
 }
 
+/* Franja de sección completa */
 #contacto::before{
   content:"";
   position:absolute;
   top: 0;
   left: 0;
-  right: 0;
-  height: 10px;
+  width: 100%;
+  height: 9px;
   background: repeating-linear-gradient(
     90deg,
     var(--carpa-rojo) 0 16px,
     #ffffff 16px 32px
   );
-  opacity: .45;
-  z-index: 2;
+  opacity: .40;
   pointer-events:none;
+  z-index: 1;
 }
 
+/* Línea inferior de la franja */
 #contacto::after{
   content:"";
   position:absolute;
-  top: 10px;
+  top: 9px;
   left: 0;
-  right: 0;
+  width: 100%;
   height: 1px;
   background: rgba(0,0,0,.06);
-  z-index: 2;
   pointer-events:none;
+  z-index: 1;
 }
 
-/* 4) IMPORTANTE: asegurar que el contenido quede arriba y no lo tape la franja */
-#faq > *,
+/* ❌ Quitar franjas internas dentro de contacto */
+#contacto .card::before,
+#contacto .card::after,
+#contacto .mini::before,
+#contacto .mini::after,
+#contacto details::before,
+#contacto details::after{
+  display:none !important;
+}
+
+/* Asegura que el contenido quede encima */
 #contacto > *{
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
   </style>
 </head>
