@@ -988,6 +988,50 @@ header .brand > div > small{
     margin: 0 auto;
   }
 }
+    /* ===== CENTRADO REAL EN CELULAR (HEADER + HERO) ===== */
+@media (max-width: 820px){
+
+  /* Contenedor: menos “aire” pero sin pegarse */
+  .container{
+    width: 96% !important;
+  }
+
+  /* Header: centrar marca y que el texto no empuje raro */
+  header .topbar{
+    justify-content: center !important;
+  }
+
+  header .brand{
+    width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* El bloque que contiene h1 + small */
+  header .brand > div{
+    text-align: center !important;
+  }
+
+  /* El texto largo: que parta bonito y no “jale” hacia un lado */
+  header .brand > div > small{
+    max-width: 34ch;
+    margin: 0 auto;
+  }
+
+  /* Hero: centrar visualmente */
+  .heroInner{
+    text-align: center !important;
+  }
+
+  .ctaRow{
+    justify-content: center !important;
+  }
+
+  .lionStage{
+    justify-content: center !important;
+  }
+}
   </style>
 </head>
 
