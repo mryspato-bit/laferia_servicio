@@ -1878,103 +1878,90 @@ header .brand > div > small{
 
     setHeaderOffset();
   })();
-  // ===== Comentarios (sin BD: se guarda mientras la página esté abierta) =====
-(function(){
+  // ===== Comentarios (con BD: se guarda en tu API PHP + MySQL) =====
+(function () {
+  const API_BASE = "https://laferia.infinityfreeapp.com/api";
+
   const form = document.getElementById("commentForm");
   const list = document.getElementById("commentList");
   const status = document.getElementById("commentStatus");
-  if(!form || !list) return;
+  if (!form || !list) return;
 
-  function timeNow(){
-    const d = new Date();
-    return d.toLocaleString("es-MX", { day:"2-digit", month:"short", hour:"2-digit", minute:"2-digit" });
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, s => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[s]));
   }
 
-  function stars(n){
-    n = Number(n) || 5;
-    return `⭐ ${n}/5`;
+  function renderComments(rows) {
+    // Limpia lista (quita el ejemplo si lo dejaste)
+    list.innerHTML = "";
+
+    rows.forEach(c => {
+      const item = document.createElement("article");
+      item.className = "review";
+      item.innerHTML = `
+        <div class="reviewTop">
+          <span class="pill">⭐ ${escapeHtml(c.calificacion)}/5</span>
+          <span class="muted">${escapeHtml(c.fecha)}</span>
+        </div>
+        <h3>“Comentario”</h3>
+        <p>“${escapeHtml(c.comentario)}” — ${escapeHtml(c.nombre)}</p>
+      `;
+      list.appendChild(item);
+    });
   }
 
-  form.addEventListener("submit", (e) => {
+  async function cargarComentarios() {
+    const res = await fetch(`${API_BASE}/comentario_list.php`);
+    const data = await res.json();
+
+    if (!data.ok) {
+      if (status) status.textContent = "❌ No se pudieron cargar comentarios.";
+      return;
+    }
+    renderComments(data.data || []);
+  }
+
+  async function enviarComentario(nombre, comentario, calificacion) {
+    const res = await fetch(`${API_BASE}/comentario_add.php`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nombre, comentario, calificacion })
+    });
+    return await res.json();
+  }
+
+  // Cargar comentarios al abrir la página
+  window.addEventListener("DOMContentLoaded", cargarComentarios);
+
+  // Enviar comentario al submit del formulario
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const fd = new FormData(form);
-    const nombre = (fd.get("nombre") || "").toString().trim();
-    const comentario = (fd.get("comentario") || "").toString().trim();
-    const rating = (fd.get("rating") || "5").toString();
+    const nombre = String(fd.get("nombre") || "").trim();
+    const comentario = String(fd.get("comentario") || "").trim();
+    const calificacion = parseInt(String(fd.get("rating") || "0"), 10);
 
-    if(!nombre || !comentario){
-      if(status) status.textContent = "⚠️ Escribe tu nombre y comentario.";
+    if (!nombre || !comentario || !(calificacion >= 1 && calificacion <= 5)) {
+      if (status) status.textContent = "⚠️ Completa nombre, comentario y calificación (1 a 5).";
       return;
     }
 
-    const title =
-      rating === "5" ? "“Excelente”" :
-      rating === "4" ? "“Muy bueno”" :
-      rating === "3" ? "“Bueno”" :
-      rating === "2" ? "“Regular”" : "“Malo”";
+    if (status) status.textContent = "⏳ Enviando…";
 
-    const item = document.createElement("article");
-    item.className = "review";
-    item.innerHTML = `
-      <div class="reviewTop">
-        <span class="pill">${stars(rating)}</span>
-        <span class="muted">${timeNow()}</span>
-      </div>
-      <h3>${title}</h3>
-      <p>“${comentario.replace(/</g,"&lt;").replace(/>/g,"&gt;")}” — ${nombre.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</p>
-    `;
+    const r = await enviarComentario(nombre, comentario, calificacion);
 
-    // Agrega arriba
-    list.prepend(item);
-
-    form.reset();
-    if(status) status.textContent = "✅ ¡Gracias! Tu comentario se agregó abajo.";
+    if (r.ok) {
+      form.reset();
+      if (status) status.textContent = "✅ ¡Gracias! Tu comentario se guardó.";
+      await cargarComentarios();
+    } else {
+      if (status) status.textContent = "❌ Error: " + (r.error || "No se pudo guardar");
+    }
   });
 })();
-const API_BASE = "https://laferia.infinityfreeapp.com/api";
-
-async function cargarComentarios() {
-  const res = await fetch(`${API_BASE}/comentario_list.php`);
-  const data = await res.json();
-
-  const cont = document.getElementById("comentariosLista");
-  if (!cont) return;
-
-  if (!data.ok) {
-    cont.innerHTML = "<p>No se pudieron cargar comentarios.</p>";
-    return;
-  }
-
-  cont.innerHTML = data.data.map(c => `
-    <div style="border:1px solid #ccc; padding:10px; margin:10px 0; border-radius:8px;">
-      <strong>${escapeHtml(c.nombre)}</strong> — ⭐ ${c.calificacion}/5
-      <div style="margin-top:6px;">${escapeHtml(c.comentario)}</div>
-      <small style="opacity:.7;">${c.fecha}</small>
-    </div>
-  `).join("");
-}
-
-async function enviarComentario(nombre, comentario, calificacion) {
-  const res = await fetch(`${API_BASE}/comentario_add.php`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ nombre, comentario, calificacion })
-  });
-
-  const data = await res.json();
-  return data;
-}
-
-// seguridad básica para no inyectar HTML
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, s => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[s]));
-}
-
-// Cuando cargue la página, trae comentarios
-window.addEventListener("DOMContentLoaded", cargarComentarios);
 </script>
 </body>
 </html>
