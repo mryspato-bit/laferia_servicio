@@ -1231,7 +1231,7 @@ header .brand > div > small{
 
           <div class="lionStage" aria-label="Ilustraciones de leones animados">
             <div class="lionWrap">
-              <svg viewBox="0 0 220 210" width="100%" height="auto" role="img" aria-label="León animado">
+              <svg viewBox="0 0 220 210" width="100%" height="100%" role="img" aria-label="León animado">
                 <g class="sparkle">
                   <circle cx="22" cy="32" r="4" fill="var(--cyan)"/>
                   <circle cx="196" cy="26" r="4" fill="var(--red)"/>
@@ -1268,7 +1268,7 @@ header .brand > div > small{
             </div>
 
             <div class="lionWrap">
-              <svg viewBox="0 0 220 210" width="100%" height="auto" role="img" aria-label="León animado 2">
+              <svg viewBox="0 0 220 210" width="100%" height="100%" role="img" aria-label="León animado 2">
                 <g class="sparkle">
                   <circle cx="32" cy="28" r="4" fill="var(--purple)"/>
                   <circle cx="188" cy="30" r="4" fill="var(--green)"/>
@@ -1436,38 +1436,59 @@ header .brand > div > small{
 
       <div class="grid2">
         <div class="checkbox-item">
-          <input type="checkbox" class="juego" value="Dardos" id="juego1">
+          <input type="checkbox" class="juego" value="Dardos" data-price="400" id="juego1">
           <label for="juego1">Dardos</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" class="juego" value="León traga pelotas" id="juego2">
+          <input type="checkbox" class="juego" value="León traga pelotas" data-price="400" id="juego2">
           <label for="juego2">León traga pelotas</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" class="juego" value="Pinta caritas" id="juego3">
+          <input type="checkbox" class="juego" value="Pinta caritas" data-price="400" id="juego3">
           <label for="juego3">Pinta caritas</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" class="juego" value="Inflables" id="juego4">
+          <input type="checkbox" class="juego" value="Inflables" data-price="400" id="juego4">
           <label for="juego4">Inflables</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" class="juego" value="Juegos de canicas" id="juego5">
+          <input type="checkbox" class="juego" value="Juegos de canicas" data-price="400" id="juego5">
           <label for="juego5">Juegos de canicas</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" class="juego" value="Máquina de burbujas" id="juego6">
+          <input type="checkbox" class="juego" value="Máquina de burbujas" data-price="400" id="juego6">
           <label for="juego6">Máquina de burbujas</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" class="juego" value="Aros" id="juego7">
+          <input type="checkbox" class="juego" value="Aros" data-price="400" id="juego7">
           <label for="juego7">Aros</label>
         </div>
         <div class="checkbox-item">
-          <input type="checkbox" class="juego" value="Lotería" id="juego8">
+          <input type="checkbox" class="juego" value="Lotería" data-price="400" id="juego8">
           <label for="juego8">Lotería</label>
         </div>
       </div>
+      <div style="display:grid; gap:10px; margin:14px 0;">
+  <label>Nombre
+    <input id="q-nombre" type="text" required>
+  </label>
+
+  <label>Teléfono / WhatsApp
+    <input id="q-telefono" type="tel" required>
+  </label>
+
+  <label>Lugar del evento
+    <input id="q-lugar" type="text" required>
+  </label>
+
+  <label>Fecha del evento
+    <input id="q-fecha" type="date">
+  </label>
+
+  <label>Comentario
+    <textarea id="q-comentario" rows="3"></textarea>
+  </label>
+       </div>
 
       <div style="margin-top:12px;">
         <button class="btn primary" id="btnCotizarSeleccion" type="button">🎉 Cotizar selección</button>
@@ -1713,6 +1734,9 @@ header .brand > div > small{
   © <span id="year"></span> La Feria • Renta de juegos
 </footer>
 <script>
+  async function cargarComentarios() {
+  // Pendiente: aquí luego se cargarán comentarios desde la BD
+}
   // ✅ WhatsApp (México: 52 + 10 dígitos)
   const WHATSAPP_NUMBER = "525628333104";
 
@@ -1767,29 +1791,79 @@ header .brand > div > small{
   }
 
   if (btnSel) {
-    btnSel.addEventListener("click", () => {
-      const juegos = juegosSeleccionados();
-      if (juegos.length === 0) {
-        if (selStatus) selStatus.textContent = "⚠️ Marca al menos un juego para cotizar.";
-        return;
-      }
+  btnSel.addEventListener("click", async () => {
+  // 1) juegos (TU lógica actual)
+  const juegos = juegosSeleccionados();
+  if (juegos.length === 0) {
+    if (selStatus) selStatus.textContent = "⚠️ Marca al menos un juego para cotizar.";
+    return;
+  }
 
-      const base = precioBase();
-      const n = (ninos && ninos.value) ? ninos.value : "No especificado";
-      const tipoTxt = (tipoRenta) ? tipoRenta.options[tipoRenta.selectedIndex].text : "No especificado";
+  // 2) total y datos que YA usas
+  const base = precioBase();
+  const n = (ninos && ninos.value) ? ninos.value : "No especificado";
+  const tipoTxt = (tipoRenta)
+    ? tipoRenta.options[tipoRenta.selectedIndex].text
+    : "No especificado";
+const cantidad = juegos.length;
+const totalFinal = (Number(base) || 0) * cantidad;
 
-      const msg =
-        `Hola, vengo de La Feria 🎪 y quiero cotizar.\n` +
-        `Tipo de renta: ${tipoTxt}\n` +
-        `Juegos seleccionados: ${juegos.join(", ")}\n` +
-        `Niños: ${n}\n` +
-        `Total estimado: $${base}\n` +
-        `Incluye: Entrega, instalación básica y retiro, más pequeños premios según la cantidad de niños.`;
+  // 3) datos del cliente (inputs que agregamos)
+  const nombre = document.querySelector("#q-nombre")?.value.trim() || "";
+  const telefono = document.querySelector("#q-telefono")?.value.trim() || "";
+  const lugar = document.querySelector("#q-lugar")?.value.trim() || "";
+  const fecha_evento = document.querySelector("#q-fecha")?.value || "";
+  const comentario = document.querySelector("#q-comentario")?.value.trim() || "";
 
-      const link = waLink(msg);
-      if (selStatus) selStatus.innerHTML =
-        `✅ Listo. <a href="${link}" target="_blank" rel="noopener">Abrir WhatsApp con la cotización</a>`;
+  if (!nombre || !telefono || !lugar) {
+    alert("Completa Nombre, Teléfono y Lugar.");
+    return;
+  }
+
+  // 4) preparar juegos para BD (convertimos array simple a objetos)
+  const juegosBD = juegos.map(j => ({ name: j, price: Number(base) || 0 }));
+  // 5) GUARDAR EN BASE DE DATOS
+  let folio = null;
+  try {
+   const res = await fetch("/laferia_mrg/api/save_quote.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nombre,
+        telefono,
+        lugar,
+        fecha_evento,
+        comentario,
+        juegos: juegosBD,
+        total: totalFinal
+      })
     });
+    const json = await res.json();
+    if (json.ok) folio = json.id;
+  } catch (e) {
+    // si falla la BD, no rompemos el flujo
+  }
+
+  // 6) mensaje WhatsApp (TU formato, con folio)
+  const folioTxt = folio ? `Folio: #${folio}\n` : "";
+const msg =
+  `Hola, vengo de La Feria 🎪 y quiero cotizar.\n` +
+  `${folioTxt}` +
+  `Tipo de renta: ${tipoTxt}\n` +
+  `Juegos seleccionados: ${juegos.join(", ")}\n` +
+  `Niños: ${n}\n` +
+  `Precio unitario: $${base}  x  ${cantidad} juego(s)\n` +
+  `Total estimado: $${totalFinal}\n` +
+  `Lugar: ${lugar}\n` +
+  `Incluye: Entrega, instalación básica y retiro, más pequeños premios según la cantidad de niños.`;
+  const link = waLink(msg);
+
+  if (selStatus) {
+    selStatus.innerHTML =
+      `✅ ${folio ? "Guardado" : "Listo"}. ` +
+      `<a href="${link}" target="_blank" rel="noopener">Abrir WhatsApp con la cotización</a>`;
+  }
+});
   }
 
   // ====== Formulario a WhatsApp ======
@@ -1890,8 +1964,8 @@ header .brand > div > small{
     clearTimeout(t);
   }
 }
-    window.addEventListener("DOMContentLoaded", cargarComentarios);
-
+ 
+   window.addEventListener("DOMContentLoaded", cargarComentarios);
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -1930,5 +2004,3 @@ header .brand > div > small{
 </body>
 
 </html>
-
-
